@@ -1,5 +1,5 @@
 import { createBrowserRouter } from "react-router-dom";
-import CreateCategory from "../components/CreateCategory";
+import CreateEvent from "../components/CreateEvent";
 import Home from "../components/Home";
 import Login from "../components/Login";
 import Register from "../components/Register";
@@ -13,7 +13,7 @@ export const router = createBrowserRouter([
     children: [
       {
         path: "/",
-        loader: () => fetch(`http://localhost:5000/categories`),
+        loader: () => fetch(`http://localhost:5000/events`),
         element: <Home></Home>,
       },
       {
@@ -21,9 +21,9 @@ export const router = createBrowserRouter([
         element: <Volunteers></Volunteers>,
       },
       {
-        path: "/createCategory",
-        loader: () => fetch(`http://localhost:5000/categories`),
-        element: <CreateCategory></CreateCategory>,
+        path: "/createEvent",
+        loader: () => fetch(`http://localhost:5000/events`),
+        element: <CreateEvent></CreateEvent>,
       },
       {
         path: "/register",

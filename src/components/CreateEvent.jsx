@@ -1,27 +1,28 @@
 import React from "react";
 import { Link, useLoaderData } from "react-router-dom";
 
-const CreateCategory = () => {
-  const categories = useLoaderData();
+const CreateEvent = () => {
+  const events = useLoaderData();
+  console.log(events);
 
   const handleSubmit = (e) => {
     e.preventDefault();
     const form = e.target;
     const title = form.title.value;
     const img = form.img.value;
-    const category = { title, img };
+    const event = { title, img };
 
-    fetch(`http://localhost:5000/categories`, {
+    fetch(`http://localhost:5000/events`, {
       method: "POST",
       headers: {
         "content-type": "application/json",
       },
-      body: JSON.stringify(category),
+      body: JSON.stringify(event),
     })
       .then((res) => res.json())
       .then((data) => {
         if (data.acknowledged) {
-          alert("Category added successfully");
+          alert("Event added successfully");
           form.reset();
         }
       });
@@ -34,9 +35,9 @@ const CreateCategory = () => {
           All events
         </h4>
         <ul>
-          {categories.map((category) => (
-            <li className="mt-4">
-              <Link>{category?.name}</Link>
+          {events.map((event) => (
+            <li key={event._id} className="mt-4">
+              <Link>{event?.title}</Link>
             </li>
           ))}
         </ul>
@@ -74,25 +75,25 @@ const CreateCategory = () => {
                 />
               </div>
             </div>
-            <div class="relative">
-              <div class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
+            <div className="relative">
+              <div className="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
                 <svg
                   aria-hidden="true"
-                  class="w-5 h-5 text-gray-500 dark:text-gray-400"
+                  className="w-5 h-5 text-gray-500 dark:text-gray-400"
                   fill="currentColor"
                   viewBox="0 0 20 20"
                   xmlns="http://www.w3.org/2000/svg"
                 >
                   <path
-                    fill-rule="evenodd"
+                    fillRule="evenodd"
                     d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z"
-                    clip-rule="evenodd"
+                    clipRule="evenodd"
                   ></path>
                 </svg>
               </div>
               <input
                 type="text"
-                class="border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5 bg-base-100 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                className="border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5 bg-base-100 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 placeholder="Select date"
               />
             </div>
@@ -124,4 +125,4 @@ const CreateCategory = () => {
   );
 };
 
-export default CreateCategory;
+export default CreateEvent;
