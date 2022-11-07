@@ -1,11 +1,9 @@
 import React from "react";
-import { Link, useLoaderData } from "react-router-dom";
+import { Link } from "react-router-dom";
 import donateGroupImg from "../assets/images/icons/Group-9-1.png";
-import DonationCard from "./DonationCard";
+import EventCard from "./EventCard";
 
 const Home = () => {
-  const events = useLoaderData();
-
   return (
     <div className="w-11/12 mx-auto">
       <div className="mt-10 grid items-center grid-cols-1 md:grid-cols-2">
@@ -27,17 +25,8 @@ const Home = () => {
       </div>
 
       {/* ============= events ============= */}
-      <div className="my-28 ">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
-          {events.map((event) => (
-            <DonationCard key={event._id} event={event}></DonationCard>
-          ))}
-        </div>
-        <div className="text-center mt-5">
-          <Link to="/createEvent" className="btn btn-primary text-white">
-            Add event
-          </Link>
-        </div>
+      <div className="my-20">
+        <EventCard></EventCard>
       </div>
     </div>
   );
